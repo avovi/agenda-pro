@@ -12,6 +12,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
+  /* ── DARK (výchozí) ── */
   --bg:#070A12;
   --bg-2:#0C111D;
   --surface:rgba(255,255,255,0.025);
@@ -25,9 +26,75 @@
   --cyan:#37E8C8;
   --violet:#7C6BFF;
   --grad:linear-gradient(110deg,#C2F04A 0%,#37E8C8 55%,#7C6BFF 100%);
+  --nav-bg:rgba(7,10,18,0.7);
+  --aura-1:#1a4035;
+  --aura-2:#201c5c;
+  --aura-3:#2e3310;
+  --selection-fg:#070A12;
+  --pill-now-bg:rgba(194,240,74,0.14);
+  --pill-now-color:#C2F04A;
+  --pill-now-border:rgba(194,240,74,0.25);
+  --pill-next-bg:rgba(124,107,255,0.14);
+  --pill-next-color:#A99BFF;
+  --pill-next-border:rgba(124,107,255,0.25);
+  --cta-bg:linear-gradient(135deg,#0E1626 0%,#0A1018 100%);
+  --browser-bar-bg:#111827;
+  --mod-lead-bg:linear-gradient(150deg,rgba(55,232,200,0.07),rgba(124,107,255,0.05));
+}
+
+/* ── LIGHT MODE — systémová preference ── */
+@media(prefers-color-scheme:light){
+  :root:not([data-theme="dark"]){
+    --bg:#F2F5FB;--bg-2:#FFFFFF;
+    --surface:rgba(0,0,0,0.04);--surface-2:rgba(0,0,0,0.07);
+    --line:rgba(0,0,0,0.09);--line-2:rgba(0,0,0,0.16);
+    --ink:#0D1320;--ink-dim:#4B566B;--ink-faint:#8A96A8;
+    --lime:#3D7500;--cyan:#0A7A74;--violet:#4A3FC0;
+    --grad:linear-gradient(110deg,#3D7500 0%,#0A7A74 55%,#4A3FC0 100%);
+    --nav-bg:rgba(242,245,251,0.8);
+    --aura-1:#b8e8d8;--aura-2:#c8c4f8;--aura-3:#d8ecaa;
+    --selection-fg:#F2F5FB;
+    --pill-now-bg:rgba(61,117,0,0.1);--pill-now-color:#3D7500;--pill-now-border:rgba(61,117,0,0.25);
+    --pill-next-bg:rgba(74,63,192,0.1);--pill-next-color:#4A3FC0;--pill-next-border:rgba(74,63,192,0.2);
+    --cta-bg:linear-gradient(135deg,#E8EDF8 0%,#F2F5FB 100%);
+    --browser-bar-bg:#E2E7F0;
+    --mod-lead-bg:linear-gradient(150deg,rgba(10,122,116,0.07),rgba(74,63,192,0.05));
+  }
+}
+
+:root[data-theme="light"]{
+  --bg:#F2F5FB;
+  --bg-2:#FFFFFF;
+  --surface:rgba(0,0,0,0.04);
+  --surface-2:rgba(0,0,0,0.07);
+  --line:rgba(0,0,0,0.09);
+  --line-2:rgba(0,0,0,0.16);
+  --ink:#0D1320;
+  --ink-dim:#4B566B;
+  --ink-faint:#8A96A8;
+  --lime:#3D7500;
+  --cyan:#0A7A74;
+  --violet:#4A3FC0;
+  --grad:linear-gradient(110deg,#3D7500 0%,#0A7A74 55%,#4A3FC0 100%);
+  --nav-bg:rgba(242,245,251,0.8);
+  --aura-1:#b8e8d8;
+  --aura-2:#c8c4f8;
+  --aura-3:#d8ecaa;
+  --selection-fg:#F2F5FB;
+  --pill-now-bg:rgba(61,117,0,0.1);
+  --pill-now-color:#3D7500;
+  --pill-now-border:rgba(61,117,0,0.25);
+  --pill-next-bg:rgba(74,63,192,0.1);
+  --pill-next-color:#4A3FC0;
+  --pill-next-border:rgba(74,63,192,0.2);
+  --cta-bg:linear-gradient(135deg,#E8EDF8 0%,#F2F5FB 100%);
+  --browser-bar-bg:#E2E7F0;
+  --mod-lead-bg:linear-gradient(150deg,rgba(10,122,116,0.07),rgba(74,63,192,0.05));
 }
 
 html{scroll-behavior:smooth}
+*,*::before,*::after{transition:background-color .4s ease,border-color .4s ease,color .3s ease,box-shadow .4s ease!important}
+a,button,.btn,.stab,.mod,.why,.prob,.c-link,.nav-cta{transition:background-color .4s ease,border-color .4s ease,color .3s ease,box-shadow .4s ease,transform .2s ease!important}
 body{
   font-family:'Inter',system-ui,sans-serif;
   background:var(--bg);
@@ -37,15 +104,15 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-::selection{background:var(--lime);color:#070A12}
+::selection{background:var(--lime);color:var(--selection-fg)}
 
 .mono{font-family:'JetBrains Mono',monospace}
 
 /* ambient background blobs */
 .aura{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.5;pointer-events:none;z-index:0}
-.aura-1{width:600px;height:600px;background:radial-gradient(circle,#1f4d3f 0%,transparent 70%);top:-200px;left:-150px;animation:drift1 22s ease-in-out infinite}
-.aura-2{width:520px;height:520px;background:radial-gradient(circle,#2a2470 0%,transparent 70%);top:30%;right:-200px;animation:drift2 26s ease-in-out infinite}
-.aura-3{width:480px;height:480px;background:radial-gradient(circle,#3a4012 0%,transparent 70%);bottom:-150px;left:20%;animation:drift1 30s ease-in-out infinite reverse}
+.aura-1{width:600px;height:600px;background:radial-gradient(circle,var(--aura-1) 0%,transparent 70%);top:-200px;left:-150px;animation:drift1 22s ease-in-out infinite}
+.aura-2{width:520px;height:520px;background:radial-gradient(circle,var(--aura-2) 0%,transparent 70%);top:30%;right:-200px;animation:drift2 26s ease-in-out infinite}
+.aura-3{width:480px;height:480px;background:radial-gradient(circle,var(--aura-3) 0%,transparent 70%);bottom:-150px;left:20%;animation:drift1 30s ease-in-out infinite reverse}
 @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,40px) scale(1.1)}}
 @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,60px) scale(0.92)}}
 
@@ -63,7 +130,7 @@ nav{
   position:sticky;top:0;z-index:50;
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 28px;
-  background:rgba(7,10,18,0.6);
+  background:var(--nav-bg);
   backdrop-filter:blur(16px) saturate(140%);
   border-bottom:1px solid var(--line);
 }
@@ -155,6 +222,58 @@ h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.9rem,4vw,2.9r
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
 
+/* ── SCREENS ── */
+.screens{padding:96px 0 80px}
+.screens-head{text-align:center;margin-bottom:52px}
+.screens-head h2{margin-bottom:0}
+
+.screen-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.stab{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:500;
+  padding:8px 16px;border-radius:100px;
+  border:1px solid var(--line);background:var(--surface);
+  color:var(--ink-dim);cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.stab:hover{border-color:var(--line-2);color:var(--ink)}
+.stab.active{background:rgba(55,232,200,0.12);border-color:rgba(55,232,200,0.4);color:var(--cyan)}
+
+.browser-wrap{
+  position:relative;
+  border-radius:20px;overflow:hidden;
+  border:1px solid var(--line-2);
+  box-shadow:0 40px 100px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.04);
+}
+.browser-bar{
+  background:var(--browser-bar-bg);
+  padding:12px 18px;
+  display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.browser-dots{display:flex;gap:7px}
+.browser-dots span{width:11px;height:11px;border-radius:50%}
+.browser-dots span:nth-child(1){background:#FF5F57}
+.browser-dots span:nth-child(2){background:#FFBD2E}
+.browser-dots span:nth-child(3){background:#28C840}
+.browser-url{
+  flex:1;background:rgba(255,255,255,0.06);border-radius:8px;
+  padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  color:var(--ink-faint);
+}
+.browser-img{
+  display:block;width:100%;aspect-ratio:16/9;object-fit:contain;object-position:top;
+  background:#f0f2f7;
+  transition:opacity .35s;
+}
+.screen-panel{display:none}
+.screen-panel.active{display:block}
+
+.screen-caption{
+  text-align:center;margin-top:22px;
+  font-family:'JetBrains Mono',monospace;font-size:0.74rem;
+  color:var(--ink-faint);letter-spacing:0.5px;
+}
+
 /* ── PROBLEM ── */
 .split{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center}
 .prob-list{display:flex;flex-direction:column;gap:14px}
@@ -190,7 +309,7 @@ h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.9rem,4vw,2.9r
 }
 .mod:hover{transform:translateY(-6px)}
 .mod:hover::before{opacity:1}
-.mod.lead{background:linear-gradient(150deg,rgba(55,232,200,0.07),rgba(124,107,255,0.05))}
+.mod.lead{background:var(--mod-lead-bg)}
 .mod.lead::before{opacity:0.6}
 
 .mod-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
@@ -198,8 +317,8 @@ h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.9rem,4vw,2.9r
 .mod-ico svg{width:22px;height:22px;stroke:var(--cyan)}
 .mod.lead .mod-ico{background:rgba(55,232,200,0.12);border-color:rgba(55,232,200,0.3)}
 .pill{font-family:'JetBrains Mono',monospace;font-size:0.66rem;font-weight:500;letter-spacing:0.5px;padding:5px 11px;border-radius:100px;white-space:nowrap}
-.pill.now{background:rgba(194,240,74,0.14);color:var(--lime);border:1px solid rgba(194,240,74,0.25)}
-.pill.next{background:rgba(124,107,255,0.14);color:#A99BFF;border:1px solid rgba(124,107,255,0.25)}
+.pill.now{background:var(--pill-now-bg);color:var(--pill-now-color);border:1px solid var(--pill-now-border)}
+.pill.next{background:var(--pill-next-bg);color:var(--pill-next-color);border:1px solid var(--pill-next-border)}
 .pill.soon{background:var(--surface-2);color:var(--ink-faint);border:1px solid var(--line)}
 
 .mod .kicker{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--ink-faint);letter-spacing:1px;margin-bottom:8px}
@@ -208,6 +327,24 @@ h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.9rem,4vw,2.9r
 .mod ul{list-style:none;display:flex;flex-direction:column;gap:9px}
 .mod ul li{font-size:0.85rem;color:var(--ink);display:flex;gap:11px;align-items:flex-start}
 .mod ul li svg{width:15px;height:15px;flex-shrink:0;margin-top:3px;stroke:var(--lime)}
+
+/* ── MODULES 3-col compact ── */
+.mod-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.mod-sm{
+  padding:22px 24px;border-radius:18px;
+  background:var(--surface);border:1px solid var(--line);
+  transition:transform .3s,border-color .3s;
+}
+.mod-sm:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.mod-sm .mod-ico{width:40px;height:40px;border-radius:11px;background:var(--surface-2);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:14px}
+.mod-sm .mod-ico svg{width:19px;height:19px;stroke:var(--ink-faint)}
+.mod-sm h4{font-family:'Sora',sans-serif;font-weight:600;font-size:0.95rem;margin-bottom:6px}
+.mod-sm p{font-size:0.82rem;color:var(--ink-dim);line-height:1.5}
+.mod-divider{margin:40px 0 0;border-top:1px solid var(--line);padding-top:28px}
+.mod-divider .eyebrow{margin-bottom:20px}
+
+@media(max-width:860px){.mod-grid-3{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.mod-grid-3{grid-template-columns:1fr}}
 
 /* ── WHY ── */
 .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -222,7 +359,7 @@ h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.9rem,4vw,2.9r
 .cta-card{
   position:relative;border-radius:28px;overflow:hidden;
   padding:64px 56px;
-  background:linear-gradient(135deg,#0E1626 0%,#0A1018 100%);
+  background:var(--cta-bg);
   border:1px solid var(--line);
   display:grid;grid-template-columns:1.3fr 0.7fr;gap:48px;align-items:center;
 }
@@ -309,10 +446,19 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
     <span class="name">Agenda<b>PRO</b></span>
   </a>
   <div class="nav-links">
+    <a href="#nahled">Náhled</a>
     <a href="#problem">Problém</a>
     <a href="#moduly">Moduly</a>
     <a href="#proc">Proč my</a>
-    <a href="#kontakt" class="nav-cta">Spojit se →</a>
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Přepnout téma" style="
+      background:var(--surface);border:1px solid var(--line-2);border-radius:100px;
+      width:38px;height:38px;display:grid;place-items:center;cursor:pointer;
+      color:var(--ink-dim);transition:all .2s;flex-shrink:0;
+    ">
+      <svg id="icon-dark" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg id="icon-light" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    </button>
+    <a href="#pilot" class="nav-cta">Přihlásit se do pilotu →</a>
   </div>
 </nav>
 
@@ -328,13 +474,45 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
     </div>
 
     <div class="metrics reveal">
-      <div class="metric"><div class="num g">5</div><div class="lbl">MODULŮ V PLÁNU</div></div>
+      <div class="metric"><div class="num g">3</div><div class="lbl">MODULY V PILOTU</div></div>
+      <div class="metric"><div class="num g">9</div><div class="lbl">MODULŮ CELKEM</div></div>
       <div class="metric"><div class="num g">40+</div><div class="lbl">PŘÍSPĚVKOVEK V BRNĚ</div></div>
       <div class="metric"><div class="num g">100%</div><div class="lbl">DLE CZ ZÁKONŮ</div></div>
       <div class="metric"><div class="num g">0</div><div class="lbl">POTŘEBA IT TÝMU</div></div>
     </div>
   </div>
 </header>
+
+<!-- SCREENS -->
+<section class="screens reveal" id="nahled">
+  <div class="wrap">
+    <div class="screens-head reveal">
+      <div class="eyebrow" style="justify-content:center">Náhled aplikace</div>
+      <h2>Podívejte se dovnitř.</h2>
+    </div>
+
+    <div class="screen-tabs">
+      <button class="stab active" onclick="switchScreen(0)">Přihlášení</button>
+      <button class="stab" onclick="switchScreen(1)">Zakázky VZMR</button>
+      <button class="stab" onclick="switchScreen(2)">Objednávky</button>
+      <button class="stab" onclick="switchScreen(3)">Nová objednávka</button>
+      <button class="stab" onclick="switchScreen(4)">Evidence majetku</button>
+    </div>
+
+    <div class="browser-wrap reveal">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url" id="browser-url">agenda-pro-app.vercel.app</div>
+      </div>
+      <div class="screen-panel active"><img class="browser-img" src="screen-1.png" alt="Přihlášení do AgendaPRO"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-2.png" alt="Zakázky VZMR"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-3.png" alt="Objednávky"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-4.png" alt="Nová objednávka"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-5.png" alt="Evidence majetku"></div>
+    </div>
+    <div class="screen-caption" id="screen-caption">01 / 05 — Přihlašovací obrazovka</div>
+  </div>
+</section>
 
 <!-- PROBLEM -->
 <section class="block" id="problem">
@@ -382,77 +560,112 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
       <p class="sub">Žádný monolitický ERP. Každý modul stojí samostatně — začnete jedním a přidáváte, až to dává smysl.</p>
     </div>
 
+    <!-- Aktivní moduly -->
     <div class="mod-grid">
 
-      <!-- VZMR + objednávky -->
       <div class="mod lead reveal">
         <div class="mod-top">
           <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01m-.01 4h.01"/></svg></div>
-          <span class="pill now">PRÁVĚ STAVÍME</span>
+          <span class="pill now">V PILOTNÍM PROVOZU</span>
         </div>
         <div class="kicker mono">MODUL 01</div>
-        <h3>Zakázky &amp; objednávky</h3>
-        <p>Veřejné zakázky malého rozsahu a schvalování objednávek v jednom průchodu — od poptávky po archivaci, v souladu se zákonem 134/2016 Sb.</p>
+        <h3>Zakázky VZMR</h3>
+        <p>Veřejné zakázky malého rozsahu od poptávky po archivaci — v souladu se zákonem 134/2016 Sb. Automatická kontrola zákonných limitů.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Automatická kontrola limitů (50 tis. / 500 tis. / 3 mil. Kč)</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Automatická kontrola limitů (50 / 500 tis. / 3 mil. Kč)</li>
           <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Generování poptávky pro 3 dodavatele</li>
           <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Evidence nabídek a porovnání cen</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Schvalovací workflow objednávek</li>
           <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>PDF záznam o výběru + fulltext archiv</li>
         </ul>
       </div>
 
-      <!-- Majetek -->
-      <div class="mod reveal">
+      <div class="mod lead reveal">
         <div class="mod-top">
-          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
-          <span class="pill next">PŘIPRAVUJEME · 2027</span>
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></div>
+          <span class="pill now">V PILOTNÍM PROVOZU</span>
         </div>
         <div class="kicker mono">MODUL 02</div>
-        <h3>Evidence majetku</h3>
-        <p>DHM, DDHM a odpisy přesně podle vyhlášky 410/2009 Sb. Inventury, kódování a export do účetnictví.</p>
+        <h3>Objednávky</h3>
+        <p>Schvalovací workflow pro interní objednávky — od zadání po potvrzení. Přehled všech stavů, export a propojení se zakázkami.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Odpisy dle vyhlášky 410/2009 Sb.</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Inventurní soupisy a protokoly</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Kódování majetku dle číselníků</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Export do účetního softwaru</li>
-        </ul>
-      </div>
-
-      <!-- Smlouvy -->
-      <div class="mod reveal">
-        <div class="mod-top">
-          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg></div>
-          <span class="pill next">PŘIPRAVUJEME · 2027</span>
-        </div>
-        <div class="kicker mono">MODUL 03</div>
-        <h3>Správa smluv</h3>
-        <p>Evidence smluv, hlídání výpovědních lhůt a povinné zveřejňování v registru smluv dle zákona 340/2015 Sb.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Hlídání termínů a výpovědních lhůt</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Napojení na registr smluv</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Upozornění e-mailem</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Fulltext vyhledávání v archivu</li>
-        </ul>
-      </div>
-
-      <!-- Výhled -->
-      <div class="mod reveal">
-        <div class="mod-top">
-          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <span class="pill soon">VÝHLED · 2028</span>
-        </div>
-        <div class="kicker mono">DALŠÍ V ŘADĚ</div>
-        <h3>Rozšíření platformy</h3>
-        <p>Podle zpětné vazby z provozu doplňujeme další agendu, kterou příspěvkovky reálně řeší den co den.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Napojení na účetní systémy</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Elektronické podepisování</li>
-          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Reporty a přehledy pro vedení</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Schvalovací workflow s historií</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Stavy: čeká / schváleno / zamítnuto</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Generování PDF objednávky</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Napojení na zakázky VZMR</li>
         </ul>
       </div>
 
     </div>
+
+    <!-- Evidence majetku — pilotní provoz -->
+    <div style="margin-top:14px">
+      <div class="mod lead reveal" style="grid-column:1/-1">
+        <div class="mod-top">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
+          <span class="pill now">V PILOTNÍM PROVOZU</span>
+        </div>
+        <div class="kicker mono">MODUL 03</div>
+        <h3>Evidence majetku</h3>
+        <p>DHM, DDHM a odpisy přesně podle vyhlášky 410/2009 Sb. Inventury, kódování, AI vyhledávání přes celou evidenci a export do účetnictví.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Odpisy dle vyhlášky 410/2009 Sb.</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Inventurní soupisy a protokoly</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>AI dotaz přes celou evidenci</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Import CSV + export do účetního softwaru</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Připravujeme -->
+    <div class="mod-divider reveal">
+      <div class="eyebrow">Připravujeme</div>
+      <div class="mod-grid-3">
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
+          <h4>Evidence majetku</h4>
+          <p>DHM, DDHM a odpisy dle vyhlášky 410/2009 Sb. Inventury, kódování a export do účetnictví.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg></div>
+          <h4>Správa smluv</h4>
+          <p>Hlídání výpovědních lhůt, napojení na registr smluv a upozornění e-mailem.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <h4>Účetní systémy</h4>
+          <p>Export a napojení na GORDIC, MÚZO a další účetní software používaný příspěvkovkami.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M8 12l2.5 2.5L16 9"/></svg></div>
+          <h4>El. podepisování</h4>
+          <p>Kvalifikovaný elektronický podpis dokumentů přímo v platformě bez externích nástrojů.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h4>Reporty pro vedení</h4>
+          <p>Přehledy a grafy pro ředitele a zřizovatele — zakázky, majetek, smlouvy na jednom místě.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h4>Testy zranitelnosti</h4>
+          <p>Automatické bezpečnostní skeny a reporty souladu s NIS2 pro veřejný sektor.</p>
+        </div>
+
+        <div class="mod-sm reveal">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <h4>Úkoly</h4>
+          <p>Jednoduché přiřazování a sledování úkolů uvnitř organizace napojené na ostatní moduly.</p>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -493,6 +706,25 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
         <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
         <h4>Vyvíjené v praxi</h4>
         <p>Vzniká přímo v provozu reálné příspěvkové organizace. Žádné teoretické dohady od stolu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILOT SIGNUP -->
+<section class="block" id="pilot">
+  <div class="wrap reveal">
+    <div class="cta-card">
+      <div>
+        <div class="eyebrow" style="color:var(--lime)">Pilotní program</div>
+        <h2>Přihlaste se<br>do pilotního provozu.</h2>
+        <p class="sub">Hledáme prvních pár příspěvkových organizací, které chtějí reálně provozovat moduly Zakázky, Objednávky a Majetek. Pilotní zákazníci mají přímý vliv na vývoj a výrazně zvýhodněné podmínky.</p>
+        <a href="mailto:ajtakbrno1@gmail.com?subject=Zájem o pilotní provoz AgendaPRO" class="btn btn-fill">Přihlásit se do pilotního provozu →</a>
+      </div>
+      <div class="pilot-meta">
+        <div class="pmeta"><span class="pn">3–5</span><span class="pt">míst v pilotním programu k dispozici</span></div>
+        <div class="pmeta"><span class="pn">3</span><span class="pt">moduly ihned k dispozici v pilotu</span></div>
+        <div class="pmeta"><span class="pn">∞</span><span class="pt">přímý vliv na funkce a priority</span></div>
       </div>
     </div>
   </div>
@@ -567,13 +799,53 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
   <div class="wrap foot">
     <div class="fb">Agenda<b>PRO</b></div>
     <div class="ft">Veřejná správa bez papírového chaosu.</div>
-    <div class="fc mono">© 2026 · Martin Mikš</div>
+    <div class="fc mono">© 2026 · Martin Mikš · <a href="https://avovi.github.io/ajtak-brno/" target="_blank" rel="noopener" style="color:var(--ink-faint);text-decoration:none;border-bottom:1px solid var(--line);transition:color .2s" onmouseover="this.style.color='var(--cyan)'" onmouseout="this.style.color='var(--ink-faint)'">web &amp; IT podpora</a></div>
   </div>
 </footer>
 
 </div>
 
 <script>
+/* ── THEME ── */
+function applyTheme(t){
+  document.documentElement.dataset.theme=t;
+  const dark=document.getElementById('icon-dark');
+  const light=document.getElementById('icon-light');
+  if(dark&&light){
+    dark.style.display=t==='light'?'block':'none';
+    light.style.display=t==='dark'?'block':'none';
+  }
+}
+function toggleTheme(){
+  const cur=document.documentElement.dataset.theme||'dark';
+  const next=cur==='dark'?'light':'dark';
+  localStorage.setItem('theme',next);
+  applyTheme(next);
+}
+(function(){
+  const saved=localStorage.getItem('theme');
+  const sys=window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';
+  applyTheme(saved||sys);
+  window.matchMedia('(prefers-color-scheme:light)').addEventListener('change',e=>{
+    if(!localStorage.getItem('theme')) applyTheme(e.matches?'light':'dark');
+  });
+  document.addEventListener('DOMContentLoaded',()=>applyTheme(document.documentElement.dataset.theme||sys));
+})();
+
+const screens=[
+  {url:'agenda-pro-app.vercel.app/login',caption:'01 / 05 — Přihlašovací obrazovka'},
+  {url:'agenda-pro-app.vercel.app/zakazky',caption:'02 / 05 — Veřejné zakázky malého rozsahu'},
+  {url:'agenda-pro-app.vercel.app/objednavky',caption:'03 / 05 — Seznam objednávek'},
+  {url:'agenda-pro-app.vercel.app/objednavky/nova',caption:'04 / 05 — Formulář nové objednávky'},
+  {url:'agenda-pro-app.vercel.app/majetek',caption:'05 / 05 — Evidence majetku organizace'},
+];
+function switchScreen(i){
+  document.querySelectorAll('.screen-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
+  document.querySelectorAll('.stab').forEach((t,j)=>t.classList.toggle('active',i===j));
+  document.getElementById('browser-url').textContent=screens[i].url;
+  document.getElementById('screen-caption').textContent=screens[i].caption;
+}
+
 const io=new IntersectionObserver((es)=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
 },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
