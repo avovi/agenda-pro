@@ -497,6 +497,8 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
       <button class="stab" onclick="switchScreen(2)">Objednávky</button>
       <button class="stab" onclick="switchScreen(3)">Nová objednávka</button>
       <button class="stab" onclick="switchScreen(4)">Evidence majetku</button>
+      <button class="stab" onclick="switchScreen(5)">Úkoly</button>
+      <button class="stab" onclick="switchScreen(6)">Přehled</button>
     </div>
 
     <div class="browser-wrap reveal">
@@ -509,8 +511,10 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
       <div class="screen-panel"><img class="browser-img" src="screen-3.png" alt="Objednávky"></div>
       <div class="screen-panel"><img class="browser-img" src="screen-4.png" alt="Nová objednávka"></div>
       <div class="screen-panel"><img class="browser-img" src="screen-5.png" alt="Evidence majetku"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-6.png" alt="Úkoly se zastupitelností"></div>
+      <div class="screen-panel"><img class="browser-img" src="screen-7.png" alt="Přehled aktivních modulů"></div>
     </div>
-    <div class="screen-caption" id="screen-caption">01 / 05 — Přihlašovací obrazovka</div>
+    <div class="screen-caption" id="screen-caption">01 / 07 — Přihlašovací obrazovka</div>
   </div>
 </div>
 
@@ -597,9 +601,10 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
 
     </div>
 
-    <!-- Evidence majetku — pilotní provoz -->
-    <div style="margin-top:14px">
-      <div class="mod lead reveal" style="grid-column:1/-1">
+    <!-- Evidence majetku + Úkoly — pilotní provoz -->
+    <div class="mod-grid" style="margin-top:14px">
+
+      <div class="mod lead reveal">
         <div class="mod-top">
           <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21h18M5 21V7l8-4 8 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg></div>
           <span class="pill now">V PILOTNÍM PROVOZU</span>
@@ -614,6 +619,23 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
           <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Import CSV + export do účetního softwaru</li>
         </ul>
       </div>
+
+      <div class="mod lead reveal">
+        <div class="mod-top">
+          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+          <span class="pill now">V PILOTNÍM PROVOZU</span>
+        </div>
+        <div class="kicker mono">MODUL 04</div>
+        <h3>Úkoly</h3>
+        <p>Přiřazování a sledování úkolů uvnitř organizace — provázané s ostatními moduly. Každý úkol lze navázat na konkrétní zakázku, objednávku nebo majetek a hlídat termíny a priority.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Přiřazení kolegům, priority a termíny</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Propojení na zakázku, objednávku i majetek</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Zastupitelnost při nepřítomnosti kolegy</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Filtry, vyhledávání a upozornění po termínu</li>
+        </ul>
+      </div>
+
     </div>
 
     <!-- Připravujeme -->
@@ -649,12 +671,6 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
           <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <h4>Testy zranitelnosti</h4>
           <p>Automatické bezpečnostní skeny a reporty souladu s NIS2 pro veřejný sektor.</p>
-        </div>
-
-        <div class="mod-sm reveal">
-          <div class="mod-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-          <h4>Úkoly</h4>
-          <p>Jednoduché přiřazování a sledování úkolů uvnitř organizace napojené na ostatní moduly.</p>
         </div>
 
       </div>
@@ -712,7 +728,7 @@ footer{border-top:1px solid var(--line);padding:38px 0;margin-top:40px}
       <div>
         <div class="eyebrow" style="color:var(--lime)">Pilotní program</div>
         <h2>Přihlaste se<br>do pilotního provozu.</h2>
-        <p class="sub">Hledáme prvních pár příspěvkových organizací, které chtějí reálně provozovat moduly Zakázky, Objednávky a Majetek. Pilotní zákazníci mají přímý vliv na vývoj a výrazně zvýhodněné podmínky.</p>
+        <p class="sub">Hledáme prvních pár příspěvkových organizací, které chtějí reálně provozovat moduly Zakázky, Objednávky, Majetek a Úkoly. Pilotní zákazníci mají přímý vliv na vývoj a výrazně zvýhodněné podmínky.</p>
         <a href="mailto:ajtakbrno1@gmail.com?subject=Zájem o pilotní provoz AgendaPRO" class="btn btn-fill">Přihlásit se do pilotního provozu →</a>
       </div>
       <div class="pilot-meta">
@@ -808,11 +824,13 @@ function toggleTheme(){
 })();
 
 const screens=[
-  {url:'agenda-pro-app.vercel.app/login',caption:'01 / 05 — Přihlašovací obrazovka'},
-  {url:'agenda-pro-app.vercel.app/zakazky',caption:'02 / 05 — Veřejné zakázky malého rozsahu'},
-  {url:'agenda-pro-app.vercel.app/objednavky',caption:'03 / 05 — Seznam objednávek'},
-  {url:'agenda-pro-app.vercel.app/objednavky/nova',caption:'04 / 05 — Formulář nové objednávky'},
-  {url:'agenda-pro-app.vercel.app/majetek',caption:'05 / 05 — Evidence majetku organizace'},
+  {url:'agenda-pro-app.vercel.app/login',caption:'01 / 07 — Přihlašovací obrazovka'},
+  {url:'agenda-pro-app.vercel.app/zakazky',caption:'02 / 07 — Veřejné zakázky malého rozsahu'},
+  {url:'agenda-pro-app.vercel.app/objednavky',caption:'03 / 07 — Seznam objednávek'},
+  {url:'agenda-pro-app.vercel.app/objednavky/nova',caption:'04 / 07 — Formulář nové objednávky'},
+  {url:'agenda-pro-app.vercel.app/majetek',caption:'05 / 07 — Evidence majetku organizace'},
+  {url:'agenda-pro-app.vercel.app/ukoly',caption:'06 / 07 — Úkoly se zastupitelností'},
+  {url:'agenda-pro-app.vercel.app/prehled',caption:'07 / 07 — Přehled aktivních modulů'},
 ];
 function switchScreen(i){
   document.querySelectorAll('.screen-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
